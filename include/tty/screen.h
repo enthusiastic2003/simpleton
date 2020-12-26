@@ -77,20 +77,19 @@ void setCursor()
 
 void scrollUp()
 {
-    int op1;
-    int op2;
-    for(int rown=1;rown<=24;rown++)
+    int op1=0;
+    int op2=0;
+    for(int row=1;row<24;row++)
     {
         for(int column=0;column<=79;column++)
         {
-            op1=rown*80+column;
-            op1=op1*2;
-            op2=(rown-1)*80+column;
-            op2=op2*2;
-            vidmem[op2]=vidmem[op1];
-            vidmem[op1]=' ';
+            op1=((row-1)*80+column)*2;
+            op2=(row*80+column)*2;
+            vidmem[op1]=vidmem[op2];
+            
         }
     }
+        
     Y--;
 }
 #endif

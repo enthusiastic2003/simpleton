@@ -14,7 +14,7 @@ kprintf("=======================================================================
 kprintf(fucker);
 kprintf("1\n");
 kprintf("2\n");
-
+kprintf("3\n");
 
 }
 // note this example will always write to the top
