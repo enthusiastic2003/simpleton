@@ -2,7 +2,7 @@
 #include<types.h>
 static void b2convert(unsigned int num, int base);
 static void puts(String put_input);
-
+//full support enabled
 void kprintf(String format,...)
 {
     va_list list;
@@ -25,46 +25,65 @@ void kprintf(String format,...)
             putchar(character_to_print);
             control++;
         }
-        control++;        
+      
+      
+         if(*control!='\0')
+         {
+             control++;
            switch(*control)
             {
+               
                 case 'd':
                     
                     integer_to_print=va_arg(list,int32);
                     if(integer_to_print>0)
                     {
                         b2convert(integer_to_print,10);
+                 
                     }
                     else if(integer_to_print<0)
                     {
                         putchar('-');
                         integer_to_print=-integer_to_print;
                         b2convert(integer_to_print,10);
+                      
                     }
+                    
                     break;
                 case 's':
                     string_to_print=va_arg(list,String);
                     puts(string_to_print);
+                    
                     break;
                 case 'c':
                     character_to_print=(char)va_arg(list,int);
                     putchar(character_to_print);
+                    
                     break;
                 case 'x':
                     hexa_to_print=va_arg(list,uint32);
                     puts("0x");
                     b2convert(hexa_to_print,16);
+                    
                     break;
                 case 'o':
                     octa_to_print=va_arg(list,uint32);
                     b2convert(octa_to_print,8);
                     
+                    
             }
-        }
+         }
+         if(*control=='\0')
+         {
+             break;
+         }
+             
+       }
+   
     
     
     va_end(list); 
-    format="";
+    
 }
 
 

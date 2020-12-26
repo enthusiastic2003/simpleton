@@ -46,11 +46,14 @@ void putchar(uint32 pr_order)
 if(pr_order=='\n')
 {
    Y++;
-   return;
+   X=0;
+   if(Y==height)
+       scrollUp();
 }
-//character keys here
-   setCursor();
+else
+{  setCursor();
    justPutTheCharacter(pr_order);     
+}
 }
 
 
@@ -79,14 +82,14 @@ void scrollUp()
 {
     int op1=0;
     int op2=0;
-    for(int row=1;row<24;row++)
+    for(int row=1;row<=24;row++)
     {
         for(int column=0;column<=79;column++)
         {
             op1=((row-1)*80+column)*2;
             op2=(row*80+column)*2;
             vidmem[op1]=vidmem[op2];
-            
+            vidmem[op2]=' ';
         }
     }
         
