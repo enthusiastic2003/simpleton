@@ -11,6 +11,7 @@ void justPutTheCharacter(char);
 static const String vidmem=(String) 0xb8000;
 static uint32 printed=0;
 static uint32 print_head=0;
+void scrollUp();
 
 //color defination
 #define BLACK 0
@@ -31,8 +32,8 @@ static uint32 print_head=0;
 #define WHITE 15
 //color defination end
 #include<stdarg.h>
-uint32 X=0;
-uint32 Y=0;
+static uint32 X=0;
+static uint32 Y=0;
 
 const uint32 width=80;
 const uint32 height=25;
@@ -66,9 +67,30 @@ void setCursor()
          {
            Y++;
            X=0;
+           if(Y==height)
+               scrollUp();
          }
         printed=width*Y+X;
         X++;
    
+}
+
+void scrollUp()
+{
+    int op1;
+    int op2;
+    for(int rown=1;rown<=24;rown++)
+    {
+        for(int column=0;column<=79;column++)
+        {
+            op1=rown*80+column;
+            op1=op1*2;
+            op2=(rown-1)*80+column;
+            op2=op2*2;
+            vidmem[op2]=vidmem[op1];
+            vidmem[op1]=' ';
+        }
+    }
+    Y--;
 }
 #endif
