@@ -1,6 +1,7 @@
 #ifndef _KPRINTF_C
 #define _KPRINTF_C
 #include<stdarg.h>
+#include<stdio.h>
 #include<types.h>
 static void b2convert(unsigned int num, int base);
 static void puts(String put_input);
