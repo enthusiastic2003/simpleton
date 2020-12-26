@@ -1,3 +1,5 @@
+#ifndef _CLL_C
+#define _CLL_C
 #include<types.h>
 void clearLine(uint32 to_clean)
 {
@@ -13,3 +15,4 @@ void clearLine(uint32 to_clean)
   X=X_bak;
   Y=Y_bak;
 }
+#endif

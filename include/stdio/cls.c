@@ -1,3 +1,5 @@
+#ifndef _CLS_C
+#define _CLS_C
 #include <types.h>
 void clearScreen()
 {
@@ -8,4 +10,5 @@ void clearScreen()
    X=0;
    Y=0;
 }
+#endif
 

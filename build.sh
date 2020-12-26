@@ -7,4 +7,4 @@ mkdir ./isodir ./isodir/boot ./isodir/boot/grub
 cp ./myos.exec ./isodir/boot/myos.exec
 cp ./grub.cfg ./isodir/boot/grub/grub.cfg
 grub-mkrescue -o myos.iso isodir
-qemu-system-x86_64 ./myos.iso
+qemu-system-x86_64 ./myos.iso -serial file:serial.log

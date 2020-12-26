@@ -1,3 +1,5 @@
+#ifndef _STRING_H
+#define _STRING_H
 #include "types.h"
 int strnlen(String org)
 {
@@ -8,4 +10,5 @@ int strnlen(String org)
    }
    return len;
 }
+#endif
 

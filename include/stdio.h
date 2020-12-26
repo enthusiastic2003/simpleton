@@ -5,4 +5,5 @@
 #include <stdio/kprintf.c>
 #include <stdio/cll.c>
 #include <stdio/cls.c>
+#include <stdio/ports.h>
 #endif
