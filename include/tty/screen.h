@@ -40,7 +40,6 @@ const uint32 height=25;
 
 
 
-
 void putchar(uint32 pr_order)
 {
 if(pr_order=='\n')
@@ -57,11 +56,15 @@ else
 }
 
 
+
+
 void justPutTheCharacter(char final_order)
 {
 print_head=2*printed;
 vidmem[print_head]=final_order;
 }
+
+
 
 
 void setCursor()
@@ -77,6 +80,9 @@ void setCursor()
         X++;
    
 }
+
+
+
 
 void scrollUp()
 {
@@ -94,5 +100,33 @@ void scrollUp()
     }
         
     Y--;
+}
+
+
+
+
+
+void clearLine(uint32 to_clean)
+{
+   uint32 Y_bak=Y;
+   uint32 X_bak=X;
+   Y=to_clean-1;
+  for(uint32 loopr=0;loopr<=width-1;loopr++)
+     {
+         X=loopr;
+         setCursor();
+         justPutTheCharacter((char)0x0);
+     }
+  X=X_bak;
+  Y=Y_bak;
+}
+void clearScreen()
+{
+   for(uint32 clea=1;clea<=25;clea++)
+      {
+         clearLine(clea);
+      }
+   X=0;
+   Y=0;
 }
 #endif
