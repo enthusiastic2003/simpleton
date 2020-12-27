@@ -68,8 +68,10 @@ void port_write_string(uint16 COM_PORT_CODE,String port_string_input,...)
         if(*control_string_port=='\0')
             break;
     }
-    va_end(port_controller);
     kprintf("\nPORT: send succeeded to %s %x",control_string_port,COM_PORT_CODE);
+    
+    va_end(port_controller);
+    
 }
 
 

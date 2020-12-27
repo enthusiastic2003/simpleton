@@ -6,7 +6,6 @@
 #define COM2 0x2F8
 #define COM3 0x3E8
 #define COM4 0x2E8
-
 uint8 inportb (uint16 _port)
 {
     	uint8 rv;
@@ -35,12 +34,18 @@ void port_init(uint16 port_to_init)
    // Check if serial is faulty (i.e: not same byte as sent)
    if(inportb(port_to_init + 0) != 0xAE) {
       kprintf("\nPORT: Cannot init port %x",port_to_init);
+      return;
+   }
+   else
+   {
+    kprintf("\nPORT: INIT SUCCESSFULL FOR %x",port_to_init);
+    
    }
  
    // If serial is not faulty set it in normal operation mode
    // (not-loopback with IRQs enabled and OUT#1 and OUT#2 bits enabled)
    outportb(port_to_init + 4, 0x0F);
-   kprintf("\nPORT: INIT SUCCESSFULL FOR %x",port_to_init);
+   
 }
 
 
@@ -52,9 +57,11 @@ int serial_received(uint16 chk1) {
 }
  
 char read_port(uint16 read_from_port) {
+   
    kprintf("\nPORT: trying to read %x",read_from_port);
    while (serial_received(read_from_port) == 0);
    return inportb(read_from_port);
+
 }
 
 
@@ -65,9 +72,11 @@ int is_transmit_empty(uint16 chk2) {
 }
  
 void write_serial(uint16 write_port_data,char write_data) {
+    
    while (is_transmit_empty(write_port_data) == 0);
  
    outportb(write_port_data,write_data);
+    
    
 }
 
